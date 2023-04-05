@@ -8,10 +8,21 @@ import { useNavigate } from "react-router-dom";
 function Home(){
 
      const [inputInfos, setInputInfos] = useState("");
+     const [error, setError] = useState(null);
      const navigate = useNavigate();
 
-     async function searchInfos(){
-
+     async function searchInfos(e){
+          e.preventDefault();
+          try {
+               setError(null)
+               const userName = inputInfos;
+               console.log(userName);
+               const response = await axios.get(`https://api.github.com/users/${userName}`);
+               console.log(response.data);
+          } catch (error) {
+               setError(error.message);
+               console.log(error.message);
+          }
      }
 
 
@@ -20,11 +31,11 @@ function Home(){
             <div className="search-container">
                <h2 className="search-title">Search Devs</h2>
                <div className="search-input-box">
-                    <form className="search-form">
-                         <input type="text" className="search-input" placeholder="Type de username here..."/>
-                         
-                         <button className="search-button"><span class="material-symbols-outlined">search</span>Buscar</button>
+                    <form onSubmit={searchInfos} className="search-form">
+                         <input type="text" className="search-input" value={inputInfos} onChange={(e)=> setInputInfos(e.target.value)} placeholder="Type de username here..."/>
+                         <button type="submit" className="search-button"><span className="material-symbols-outlined">search</span>Buscar</button>
                     </form>
+                    {error && <div className="error-msg">O usuário não existe</div>}
                </div>
             </div>
         </div>
