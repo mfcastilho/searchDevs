@@ -19,6 +19,9 @@ function Home(){
                console.log(userName);
                const response = await axios.get(`https://api.github.com/users/${userName}`);
                console.log(response.data);
+               const user = response.data;
+
+               navigate("/perfil", {state: {user}});
           } catch (error) {
                setError(error.message);
                console.log(error.message);
