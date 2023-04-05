@@ -6,9 +6,6 @@
 ## Objetivo do desafio
 Construir uma aplicação web em ReactJS que busque o perfil de desenvolvedores na API pública do GitHub e exibir os seus dados em uma página de perfil.
 
-## Como começar o desafio
-Dar um fork no projeto, clonar o repositório em sua máquina local e criar um branch novo para o seu código.
-
 
 ## Histórias
 •	Ao entrar na home page, devo pesquisar o usuário pelo seu username do GitHub e ter os dados do usuário exibidos corretamente na página de perfil.  
@@ -45,7 +42,7 @@ Dar um fork no projeto, clonar o repositório em sua máquina local e criar um b
 
 •	Pode utilizar qualquer library de CSS e CSS-in-JS. (recomendamos Material UI, Bootstrap ou Styled Components. Pode fazer com CSS clássico também)
 
-•	Deve-se utilizar rotas com a library react-router-dom, e recomendamos o uso da funcionalidade de history do react-router-dom também
+•	Deve-se utilizar rotas com a library react-router-dom, e recomendamos o uso da funcionalidade do navigate do react-router-dom também
 
 •	O teste deve conter duas rotas: a rota “home” da página de busca, e a rota “perfil” que exibe o perfil do usuário pesquisado
 
