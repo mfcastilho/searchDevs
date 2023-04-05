@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+.home-container{
+     width: 100%;
+     max-width: 1366px;
+}
+
+
+
+.search-container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   margin: 41.1rem 0 51.2rem 0;
+
+}
+.search-title{
+     color: #3B4252;
+     font-family: 'Lato', sans-serif;
+     font-size: 4rem;
+     font-style: italic;
+     line-height: 5rem;
+     width: 50rem;
+     text-align: center;
+
+     font-weight: 300;
+
+     
+}
+.search-input-box{
+
+}
+
+.search-form{
+     height: 5rem;
+     display: flex;
+     align-items: center;
+}
+
+.search-input{
+    width: 40rem;
+    height: 5rem;
+    font-size: 1.8rem;
+
+    border-radius: .5rem;
+    padding: 2.3rem;
+
+
+    color: #8190A5;
+    font-family: 'Lato', sans-serif;
+     
+     font-style: italic;
+     line-height: 6.2rem;
+     text-align: left;
+
+
+     background-color: #FFFFFF;
+     border: 1px solid #3B4252;
+}
+
+.search-input::placeholder{
+     color: #b5b9bd;
+}
+
+.search-button{
+     background-color: #47525E;
+     border-radius: .5rem;
+     border: none;
+     width: 11.8rem;
+     height: 5.0rem;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: .4rem;
+   
+     color: #cacccf;
+     font-family: 'Lato', sans-serif;
+     font-size: 2.2rem;
+     font-weight: 100;
+     font-style: italic;
+     line-height: 6.2rem;
+
+     cursor: pointer;
+}
+
+
+
+.search-button::before{
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-family: 'material-symbols-outlined';
+     /* content: url("../../public/lupa.svg"); */
+}
