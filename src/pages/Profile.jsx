@@ -8,7 +8,7 @@ function Profile(){
           <div className="profile-container">
                
 
-               <div className="sidebar-container">
+               <aside className="sidebar-container">
                     <img className="profile-picture" src="" alt="" />
                     <div className="profile-infos-box">
                          <h3 className="profile-full-name">Developer´s full name</h3>
@@ -58,10 +58,25 @@ function Profile(){
                          </div>
                          
                     </div>
-               </div>
-               <div className="user-repositories-container">
-
-               </div>
+               </aside>
+               <section className="user-repositories-container">
+                    <article className="repository-infos">
+                         <h4 className="repository-name">Repository Name</h4>
+                         <p className="repository-description">
+                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, obcaecati cum nemo alias ipsa accusamus quam maxime eum!
+                         </p>
+                         <div className="repository-details-box">
+                              <div className="wrapper-details">
+                                   <img className="followers-icon-img" src="../../public/star2.png" alt="" />
+                                   <span className="stars">stars</span>
+                              </div>
+                              <div className="wrapper-details">
+                                   <span className="separator">.</span>
+                                   <span className="updated">Updated 30 days ago</span>
+                              </div>
+                         </div>
+                    </article>
+               </section>
               
           </div>
      )
