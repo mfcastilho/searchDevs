@@ -1,8 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Profile.css";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Profile(){
 
+     const location = useLocation();
+     const user = location.state.user;
+
+     const [repositories, setRepositories] = useState([]);
+     
+
+     async function getUserRepositories(){
+          try {
+               const response = await axios.get(`https://api.github.com/users/${user.login}/repos`);
+               setRepositories(response.data);
+          } catch (error) {
+               console.error(error.message);
+          }
+     }
+     getUserRepositories()
 
      return(
           <div className="profile-container">
@@ -11,18 +28,18 @@ function Profile(){
                <aside className="sidebar-container">
                     <img className="profile-picture" src="" alt="" />
                     <div className="profile-infos-box">
-                         <h3 className="profile-full-name">Developer´s full name</h3>
-                         <h6 className="profile-username">@username</h6>
-                         <p className="profile-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum illum totam, earum molestiae facere, iusto, aspernatur officia explicabo ex vero ducimus.</p>
+                         <h3 className="profile-full-name">{user.name}</h3>
+                         <h6 className="profile-username">@{user.login}</h6>
+                         <p className="profile-description">{user.bio}</p>
                          <div className="followers-and-stars-box">
                               <div className="followers-box">
                                    <img className="followers-icon-img" src="../../public/followers-icon.png" alt="" />
-                                   <span className="followers-quantity">100</span>
+                                   <span className="followers-quantity">{user.followers}</span>
                                    <span className="followers">followers</span>
                               </div>
                               <div className="following-box">
                                    <img className="followers-icon-img" src="../../public/heart.png" alt="" />
-                                   <span className="followers-quantity">100</span>
+                                   <span className="followers-quantity">{user.following}</span>
                                    <span className="followers">following</span>
                               </div>
                               <div className="stars-box">

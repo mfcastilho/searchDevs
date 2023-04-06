@@ -11,7 +11,7 @@ export function RoutesApp(){
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/home" element={<Home />} />
-                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/perfil" element={<Profile />} />
               </Routes>
           </BrowserRouter>
      )
