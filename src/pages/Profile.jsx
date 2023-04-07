@@ -10,6 +10,8 @@ function Profile(){
      const user = location.state.user;
      
      const [totalProfileStars, setTotalProfileStars] = useState(0);
+     const [organizations, setOrganizations] = useState([]);
+     const [org, setOrg] = useState(null);
  
      const navigate = useNavigate();
      if(!user){
@@ -29,6 +31,7 @@ function Profile(){
                     repository.updated_at = daysAgo;
                     totalStars += repository.stargazers_count;
                     setTotalProfileStars(totalStars);
+
                });
                setRepositories(response.data);
                page++;
@@ -36,9 +39,40 @@ function Profile(){
                console.error(error.message);
           }
      }
+
+     function leaveToTheHomePage(){
+          navigate("/");
+     }
+
+     function editUserWebSiteLink(){
+          const userWebsireLinkFirstPart = user.blog.split("//")[0];
+          if(userWebsireLinkFirstPart !== "https:" ){
+               return `https://${user.blog}`
+          }
+          return user.blog;
+     }
+
+     async function getUserOrganizatios(){
+          try {
+               
+               const response = await axios.get(`https://api.github.com/users/${user.login}/orgs`);
+               console.log(response.data.length);
+               const orgPrimises = response.data.map( async org=>{
+                    const res = await axios.get(`https://api.github.com/orgs/${org.login}`);
+                    return res.data;
+               })
+               const orgData = await Promise.all(orgPrimises);
+               setOrganizations(orgData);
+          } catch (error) {
+               console.log(error.message);
+          }
+     }
+
+     
      
      useEffect(()=>{
-          getUserRepositories()
+          getUserRepositories();
+          getUserOrganizatios();
      }, []);
 
      return(
@@ -69,30 +103,48 @@ function Profile(){
                               </div>
                          </div>
                          <div className="profile-others-infos">
-                              <div className="links-box">
-                                   <img className="images" src="../../public/organization-icon.png" alt="" />
-                                   <a href="" className="link"><p className="info">organization</p></a>
+
+                              {organizations.length > 0 && (
+                                   <div className="orgs-box">
+                                   {organizations.map((org) => (
+                                        <div key={org.id} className="orgs-wrapper">
+                                             <img className="images" src="../../public/organization-icon.png" alt="" />
+                                             <a key={org.id} href={`${org.html_url}`} target="_blank" className="link"><p className="info">{org.login}</p></a>
+                                        </div>
+                                   ))}
                               </div>
+                              )}
                               
-                              <div className="links-box">
-                                   <img className="images" src="../../public/email-icon.png" alt="" />
-                                   <a href="" className="link"><p className="info">email</p></a>
-                              </div>
-                              <div className="links-box">
-                                   <img className="images" src="../../public/website-icon.png" alt="" />
-                                   <a href="" className="link"><p className="info">www.mywebsite.com</p></a>
-                              </div>
-                              <div className="links-box">
-                                   <img className="images" src="../../public/twitter-icon.png" alt="" />
-                                   <a href="" className="link"><p className="info">@myTwitter</p></a>
-                              </div>
+                              {user.email ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/email-icon.png" alt="" />
+                                        <a href="" className="link"><p className="info">email</p></a>
+                                   </div>
+                              ) : null}
+                              
+
+                              {user.blog ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/website-icon.png" alt="" />
+                                        <a href={`${editUserWebSiteLink()}`} target="_blank" className="link"><p className="info">{user.blog.split("?")[0]}</p></a>
+                                   </div>
+                              ) : null}
+                              
+                              {user.witter_username ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/twitter-icon.png" alt="" />
+                                        <a href="" className="link"><p className="info">@myTwitter</p></a>
+                                   </div>
+                              ) : null}
+                              
                          </div>
                          <div className="button-box">
-                              <button className="back-button">Voltar</button>
+                              <button onClick={leaveToTheHomePage} className="back-button">Voltar</button>
                          </div>
                          
                     </div>
                </aside>
+
                <section className="user-repositories-container">
                     {repositories.map(repository =>(
                          <a href={repository.html_url} target="_blank" key={repository.id} className="repository-infos">
