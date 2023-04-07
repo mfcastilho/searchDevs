@@ -21,13 +21,13 @@ function Profile(){
      async function getUserRepositories(){
           try {
                const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
-               setRepositories(response.data);
-               // const updatedAt = response.data.updated_at.split("T")[0]; 
-               // setDate();
+               
+               response.data.sort((a, b)=> b.stargazers_count - a.stargazers_count);
                response.data.forEach(repository=>{
                     const daysAgo = moment(repository.updated_at).fromNow(true);
                     repository.updated_at = daysAgo;
-               })
+               });
+               setRepositories(response.data);
                console.log(date);
                console.log(repositories);
                page++;
