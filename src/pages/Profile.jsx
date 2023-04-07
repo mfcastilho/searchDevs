@@ -1,32 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import moment from "moment/moment";
 
 function Profile(){
 
      const location = useLocation();
      const user = location.state.user;
+     const [dateNow, setDateNow] = useState("");
+ 
+     const navigate = useNavigate();
+     if(!user){
+          navigate("/");
+     }
 
      const [repositories, setRepositories] = useState([]);
-     
+     let page = 1;
 
      async function getUserRepositories(){
           try {
-               const response = await axios.get(`https://api.github.com/users/${user.login}/repos`);
+               const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
                setRepositories(response.data);
+               // const updatedAt = response.data.updated_at.split("T")[0]; 
+               // setDate();
+               response.data.forEach(repository=>{
+                    const daysAgo = moment(repository.updated_at).fromNow(true);
+                    repository.updated_at = daysAgo;
+               })
+               console.log(date);
+               console.log(repositories);
+               page++;
           } catch (error) {
                console.error(error.message);
           }
      }
-     getUserRepositories()
+     
+     useEffect(()=>{
+          getUserRepositories()
+     }, []);
 
      return(
           <div className="profile-container">
                
 
                <aside className="sidebar-container">
-                    <img className="profile-picture" src="" alt="" />
+                    <img className="profile-picture" src={user.avatar_url} alt="" />
                     <div className="profile-infos-box">
                          <h3 className="profile-full-name">{user.name}</h3>
                          <h6 className="profile-username">@{user.login}</h6>
@@ -77,22 +96,25 @@ function Profile(){
                     </div>
                </aside>
                <section className="user-repositories-container">
-                    <article className="repository-infos">
-                         <h4 className="repository-name">Repository Name</h4>
+                    {repositories.map(repository =>(
+                         <article key={repository.id} className="repository-infos">
+                         <h4 className="repository-name">{repository.name}</h4>
                          <p className="repository-description">
-                              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, obcaecati cum nemo alias ipsa accusamus quam maxime eum!
+                              {repository.description}
                          </p>
                          <div className="repository-details-box">
                               <div className="wrapper-details">
                                    <img className="followers-icon-img" src="../../public/star2.png" alt="" />
+                                   <span className="star-quantity">{repository.stargazers_count}</span>
                                    <span className="stars">stars</span>
                               </div>
                               <div className="wrapper-details">
                                    <span className="separator">.</span>
-                                   <span className="updated">Updated 30 days ago</span>
+                                   <span className="updated">Updated {repository.updated_at} days ago</span>
                               </div>
                          </div>
                     </article>
+                    ))}
                </section>
               
           </div>
