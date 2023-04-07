@@ -8,7 +8,8 @@ function Profile(){
 
      const location = useLocation();
      const user = location.state.user;
-     const [dateNow, setDateNow] = useState("");
+     
+     const [totalProfileStars, setTotalProfileStars] = useState(0);
  
      const navigate = useNavigate();
      if(!user){
@@ -21,15 +22,18 @@ function Profile(){
      async function getUserRepositories(){
           try {
                const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
-               
+               let totalStars = 0;
                response.data.sort((a, b)=> b.stargazers_count - a.stargazers_count);
                response.data.forEach(repository=>{
                     const daysAgo = moment(repository.updated_at).fromNow(true);
                     repository.updated_at = daysAgo;
+                    totalStars += repository.stargazers_count;
+                    setTotalProfileStars(totalStars);
+                    console.log(totalProfileStars);
                });
                setRepositories(response.data);
-               console.log(date);
-               console.log(repositories);
+               // console.log(date);
+               console.log(totalStars);
                page++;
           } catch (error) {
                console.error(error.message);
@@ -63,7 +67,7 @@ function Profile(){
                               </div>
                               <div className="stars-box">
                                    <img className="followers-icon-img" src="../../public/star.png" alt="" />
-                                   <span className="followers-quantity">100</span>
+                                   <span className="followers-quantity">{totalProfileStars}</span>
                                    <span className="followers">stars</span>
                               </div>
                          </div>
