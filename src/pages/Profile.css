@@ -170,8 +170,8 @@
 
 .repository-infos{
      border-bottom: 1px solid #ECEFF4;
-
      margin-bottom: 1.4rem;
+     text-decoration: none;
 }
 
 .repository-name{
@@ -214,6 +214,7 @@
      line-height: 2.6rem;
      width: 10rem;
      text-align: left;
+     
 }
 
 .star-quantity{
@@ -224,6 +225,7 @@
      font-style: italic;
      line-height: 2.6rem;
      text-align: left;
+     margin-right: .3rem;
 }
 
 

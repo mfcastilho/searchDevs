@@ -29,11 +29,8 @@ function Profile(){
                     repository.updated_at = daysAgo;
                     totalStars += repository.stargazers_count;
                     setTotalProfileStars(totalStars);
-                    console.log(totalProfileStars);
                });
                setRepositories(response.data);
-               // console.log(date);
-               console.log(totalStars);
                page++;
           } catch (error) {
                console.error(error.message);
@@ -76,10 +73,7 @@ function Profile(){
                                    <img className="images" src="../../public/organization-icon.png" alt="" />
                                    <a href="" className="link"><p className="info">organization</p></a>
                               </div>
-                              <div className="links-box">
-                                   <img className="images" src="../../public/location-icon.png" alt="" />
-                                   <a href="" className="link"><p className="info">location</p></a>
-                              </div>
+                              
                               <div className="links-box">
                                    <img className="images" src="../../public/email-icon.png" alt="" />
                                    <a href="" className="link"><p className="info">email</p></a>
@@ -101,7 +95,7 @@ function Profile(){
                </aside>
                <section className="user-repositories-container">
                     {repositories.map(repository =>(
-                         <article key={repository.id} className="repository-infos">
+                         <a href={repository.html_url} target="_blank" key={repository.id} className="repository-infos">
                          <h4 className="repository-name">{repository.name}</h4>
                          <p className="repository-description">
                               {repository.description}
@@ -117,7 +111,7 @@ function Profile(){
                                    <span className="updated">Updated {repository.updated_at} days ago</span>
                               </div>
                          </div>
-                    </article>
+                    </a>
                     ))}
                </section>
               
