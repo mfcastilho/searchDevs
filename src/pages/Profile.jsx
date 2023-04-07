@@ -45,10 +45,19 @@ function Profile(){
      }
 
      function editUserWebSiteLink(){
-          const userWebsireLinkFirstPart = user.blog.split("//")[0];
-          if(userWebsireLinkFirstPart !== "https:" ){
+          const userWebsiteLinkFirstPart = user.blog.split("//")[0];
+          if(userWebsiteLinkFirstPart !== "https:" ){
                return `https://${user.blog}`
           }
+          return user.blog;
+     }
+
+     function editHowUserWebsitelinkWillShow(){
+          const userWebSiteLinkFirstPart = user.blog.split("www.")[0];
+          if(userWebSiteLinkFirstPart == "https://" ){
+               return user.blog.split("www.")[1];
+          }
+
           return user.blog;
      }
 
@@ -83,7 +92,7 @@ function Profile(){
                     <img className="profile-picture" src={user.avatar_url} alt="" />
                     <div className="profile-infos-box">
                          <h3 className="profile-full-name">{user.name}</h3>
-                         <h6 className="profile-username">@{user.login}</h6>
+                         <a href={`https://github.com/${user.login}`} target="_blank" className="profile-username">@{user.login}</a>
                          <p className="profile-description">{user.bio}</p>
                          <div className="followers-and-stars-box">
                               <div className="followers-box">
@@ -126,14 +135,14 @@ function Profile(){
                               {user.blog ? (
                                    <div className="links-box">
                                         <img className="images" src="../../public/website-icon.png" alt="" />
-                                        <a href={`${editUserWebSiteLink()}`} target="_blank" className="link"><p className="info">{user.blog.split("?")[0]}</p></a>
+                                        <a href={`${editUserWebSiteLink()}`} target="_blank" className="link"><p className="info">{editHowUserWebsitelinkWillShow()}</p></a>
                                    </div>
                               ) : null}
                               
-                              {user.witter_username ? (
+                              {user.twitter_username ? (
                                    <div className="links-box">
                                         <img className="images" src="../../public/twitter-icon.png" alt="" />
-                                        <a href="" className="link"><p className="info">@myTwitter</p></a>
+                                        <a href={`https://twitter.com/${user.twitter_username}`} target="_blank" className="link"><p className="info">@{user.twitter_username}</p></a>
                                    </div>
                               ) : null}
                               
