@@ -361,10 +361,6 @@
           margin: 1rem 0;
      }
 
-     .links-box{
-
-     }
-
      .profile-infos-box{
           justify-content: space-between;
      }
@@ -514,4 +510,12 @@
      }
      
      
+}
+
+@media (max-width:459px){
+
+     .followers-and-stars-box{
+          justify-content: center;
+          gap: 0;
+     }
 }
