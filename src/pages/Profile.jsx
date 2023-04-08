@@ -6,15 +6,11 @@ import moment from "moment/moment";
 
 function Profile(){
 
-     const location = useLocation();
      const user = JSON.parse(localStorage.getItem("user"));
      
      const [totalProfileStars, setTotalProfileStars] = useState(0);
      const [organizations, setOrganizations] = useState([]);
-     const [org, setOrg] = useState(null);
 
-     const [isFixed, setIsFixed] = useState(false);
- 
      const navigate = useNavigate();
      if(!user){
           navigate("/");
@@ -65,7 +61,6 @@ function Profile(){
      }
 
      function turningMobileBackButtonBarFRixed(){
-          const buttonBox = document.querySelector(".mobile-button-box")
           const scrollTop = window.scrollY;
           console.log(scrollTop);
           
@@ -73,10 +68,8 @@ function Profile(){
           if(scrollTop > 279){
                document.querySelector(".mobile-button-box").classList.add("isFixed");
                document.querySelector(".profile-container").computedStyleMap.position = "relative";
-               console.log("A")
           }else{
                document.querySelector(".mobile-button-box").classList.remove("isFixed");
-               console.log("B")
           }
      }
 
