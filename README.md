@@ -58,6 +58,6 @@ Aplicação web em ReactJS que busca o perfil de desenvolvedores na API pública
 A ideia deste projeto é entender os conceitos básicos de React, com um desafio no mundo real, da forma mais “sincera” possível. E, a partir dele, entender como trazer este conhecimento pra debate com outros profissionais e como apresentar uma solução técnica que traz valor para um cliente/usuário final num ambiente de trabalho. 
 
 ## Deploy do projeto 
-> - Link: https://6430f8abf3fded51c5d15109--superlative-crostata-e5b6d9.netlify.app
+> - Link: https://643104c5d0efd65c7579ddeb--superlative-crostata-e5b6d9.netlify.app
 
 
