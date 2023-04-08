@@ -103,3 +103,29 @@
      font-size: 1.2rem;
 
 }
+
+
+@media (max-width:580px){
+
+
+     .search-container{
+          width: 100%;
+     }
+     .search-title{
+          width: 100%;
+     }
+     .search-input-box{
+          width: 90%;
+     }
+
+     .search-form{
+          width: 100%;
+     }
+
+     .search-input{
+          width: 100%;
+     }
+     .search-button{
+          width: 50%;
+     }
+}

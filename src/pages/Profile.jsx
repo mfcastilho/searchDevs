@@ -12,6 +12,8 @@ function Profile(){
      const [totalProfileStars, setTotalProfileStars] = useState(0);
      const [organizations, setOrganizations] = useState([]);
      const [org, setOrg] = useState(null);
+
+     const [isFixed, setIsFixed] = useState(false);
  
      const navigate = useNavigate();
      if(!user){
@@ -25,6 +27,7 @@ function Profile(){
           try {
                const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
                let totalStars = 0;
+               console.log(response)
                response.data.sort((a, b)=> b.stargazers_count - a.stargazers_count);
                response.data.forEach(repository=>{
                     const daysAgo = moment(repository.updated_at).fromNow(true);
@@ -61,6 +64,24 @@ function Profile(){
           return user.blog;
      }
 
+     function turningMobileBackButtonBarFRixed(){
+          const buttonBox = document.querySelector(".mobile-button-box")
+          const scrollTop = window.scrollY;
+          console.log(scrollTop);
+          
+
+          if(scrollTop > 279){
+               document.querySelector(".mobile-button-box").classList.add("isFixed");
+               document.querySelector(".profile-container").computedStyleMap.position = "relative";
+               console.log("A")
+          }else{
+               document.querySelector(".mobile-button-box").classList.remove("isFixed");
+               console.log("B")
+          }
+     }
+
+     window.addEventListener("scroll", turningMobileBackButtonBarFRixed);
+
      async function getUserOrganizatios(){
           try {
                
@@ -87,6 +108,78 @@ function Profile(){
      return(
           <div className="profile-container">
                
+               <div className="header-mobile-container">
+                    <div className="top-header-mobile-part">
+                         <img className="profile-picture" src={user.avatar_url} alt="" />
+                         <div className="wrapper-top-part">
+                              <h3 className="profile-full-name">{user.name}</h3>
+                              <a href={`https://github.com/${user.login}`} target="_blank" className="profile-username">@{user.login}</a>
+                              <p className="profile-description">{user.bio}</p>
+                         </div>
+                         
+                    </div>
+                    <div className="profile-infos-box">
+                         
+                         <div className="followers-and-stars-box">
+                              <div className="followers-box">
+                                   <img className="followers-icon-img" src="../../public/followers-icon.png" alt="" />
+                                   <span className="followers-quantity">{user.followers}</span>
+                                   <span className="followers">followers</span>
+                              </div>
+                              <div className="following-box">
+                                   <img className="followers-icon-img" src="../../public/heart.png" alt="" />
+                                   <span className="followers-quantity">{user.following}</span>
+                                   <span className="followers">following</span>
+                              </div>
+                              <div className="stars-box">
+                                   <img className="followers-icon-img" src="../../public/star.png" alt="" />
+                                   <span className="followers-quantity">{totalProfileStars}</span>
+                                   <span className="followers">stars</span>
+                              </div>
+                         </div>
+                         <div className="profile-others-infos">
+
+                              {organizations.length > 0 && (
+                                   <div className="orgs-box">
+                                   {organizations.map((org) => (
+                                        <div key={org.id} className="orgs-wrapper">
+                                             <img className="images" src="../../public/organization-icon.png" alt="" />
+                                             <a key={org.id} href={`${org.html_url}`} target="_blank" className="link"><p className="info">{org.login}</p></a>
+                                        </div>
+                                   ))}
+                              </div>
+                              )}
+                              
+                              {user.email ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/email-icon.png" alt="" />
+                                        <a href="" className="link"><p className="info">email</p></a>
+                                   </div>
+                              ) : null}
+                              
+
+                              {user.blog ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/website-icon.png" alt="" />
+                                        <a href={`${editUserWebSiteLink()}`} target="_blank" className="link"><p className="info">{editHowUserWebsitelinkWillShow()}</p></a>
+                                   </div>
+                              ) : null}
+                              
+                              {user.twitter_username ? (
+                                   <div className="links-box">
+                                        <img className="images" src="../../public/twitter-icon.png" alt="" />
+                                        <a href={`https://twitter.com/${user.twitter_username}`} target="_blank" className="link"><p className="info">@{user.twitter_username}</p></a>
+                                   </div>
+                              ) : null}
+                              
+                         </div>
+                         
+                         
+                    </div>
+               </div>
+               <div className="mobile-button-box">
+                              <button onClick={leaveToTheHomePage} className="back-button">Voltar</button>
+               </div>
 
                <aside className="sidebar-container">
                     <img className="profile-picture" src={user.avatar_url} alt="" />
