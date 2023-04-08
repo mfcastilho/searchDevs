@@ -23,7 +23,6 @@ function Profile(){
           try {
                const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
                let totalStars = 0;
-               console.log(response)
                response.data.sort((a, b)=> b.stargazers_count - a.stargazers_count);
                response.data.forEach(repository=>{
                     const daysAgo = moment(repository.updated_at).fromNow(true);
@@ -62,8 +61,6 @@ function Profile(){
 
      function turningMobileBackButtonBarFRixed(){
           const scrollTop = window.scrollY;
-          console.log(scrollTop);
-          
 
           if(scrollTop > 279){
                document.querySelector(".mobile-button-box").classList.add("isFixed");
@@ -79,7 +76,6 @@ function Profile(){
           try {
                
                const response = await axios.get(`https://api.github.com/users/${user.login}/orgs`);
-               console.log(response.data.length);
                const orgPrimises = response.data.map( async org=>{
                     const res = await axios.get(`https://api.github.com/orgs/${org.login}`);
                     return res.data;
