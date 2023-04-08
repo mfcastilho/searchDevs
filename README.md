@@ -1,78 +1,61 @@
 # searchDevs
 
-# O desafio:
-* Desafio em ReactJS para que as pessoas iniciantes de front-end possam desenvolver uma aplicação que vai testar seus conhecimentos e te proporcionar um feedback construtivo para crescer na stack.
-
-## Objetivo do desafio
-Construir uma aplicação web em ReactJS que busque o perfil de desenvolvedores na API pública do GitHub e exibir os seus dados em uma página de perfil.
+Aplicação web em ReactJS que busca o perfil de desenvolvedores na API pública do GitHub e exibe os seus dados em uma página de perfil.
 
 
-## Histórias
-•	Ao entrar na home page, devo pesquisar o usuário pelo seu username do GitHub e ter os dados do usuário exibidos corretamente na página de perfil.  
+## O que faz a aplicação
+> •	Pesquisa o username do perfil do GitHub e obtém os dados do usuário exibidos corretamente na página de perfil.  
 
-•	Na página de perfil, os repositórios devem ser ordenados com o seguinte critério: dos que tem mais estrelas, para os que tem menos estrelas.  
+> •	Na página de perfil, os repositórios são ordenados com o seguinte critério: dos que tem mais estrelas, para os que tem menos estrelas.  
 
-•	Os nomes dos repositórios devem ser links que levam ao repositório original do GitHub, em uma página nova.  
+> •	Os nomes dos repositórios são links que levam ao repositório original do GitHub, em uma página nova.  
 
-•	Caso o usuário pesquisado possua um site nas informações de seu perfil, o mesmo deve ser aberto em uma nova página. O mesmo deve acontecer caso o usuário pesquisado tenha uma conta no twitter em seu perfil.  
+> •	Caso o usuário pesquisado possua um site nas informações de seu perfil, o mesmo ao ser clicado, é aberto em uma nova página. O mesmo acontece caso o usuário pesquisado tenha uma conta no twitter em seu perfil.  
 
-•	O botão de voltar deve levar de volta para a home page, para que outro usuário do GitHub seja pesquisado.  
-
-
-## Referências
-•	API de busca de usuários do GitHub: https://api.github.com/users/username
-
-•	API de busca de repositórios do usuário pesquisado: https://api.github.com/users/username/repos
-
-•	Documentação oficial do GitHub: https://docs.github.com/en/rest
-
-•	Design de tela que deve ser utilizado para a tela Home: https://marvelapp.com/prototype/9b662g7/screen/76185933/handoff
-
-•	Design de tela que deve ser utilizado para a tela Perfil: https://marvelapp.com/prototype/9b662g7/screen/76186368/handoff
-
-## Observações
-1. Não é necessário se preocupar com CORS ou implementar um backend para fazer as requisições. A API do Github permite chamadas diretas do navegador.
-
-2. Caso queira visualizar o payload com a resposta das requisições, recomendamos utilizar o Insomnia para a tarefa. (ou postman, ou postwoman, ou curl, o que preferir).
-
-## Requisitos Técnicos para a entrega do teste
-•	O teste deve ser feito utilizando a library de ReactJS com function components
-
-•	Pode utilizar qualquer boilerplate de sua prefência (CRA, CSA, ou montar o boilerplate na mão)
-
-•	Pode utilizar qualquer library de CSS e CSS-in-JS. (recomendamos Material UI, Bootstrap ou Styled Components. Pode fazer com CSS clássico também)
-
-•	Deve-se utilizar rotas com a library react-router-dom, e recomendamos o uso da funcionalidade do navigate do react-router-dom também
-
-•	O teste deve conter duas rotas: a rota “home” da página de busca, e a rota “perfil” que exibe o perfil do usuário pesquisado
-
-•	O responsivo – caso queira faze-lo – deve ser levado em 3 considerações: Notebook/Desktop (como um só, resoluções maiores que 1300px width), tablet iPad e celular iPhone 5 (o Chrome Dev Tools possui referência para todos estes dispositivos por padrão)
-
-•	O projeto deve ter uma documentação em readme ensinando a: 
-1. instalar o projeto na máquina (engines, versão de node, qual gerenciador de pacote usar)
-2. instalar as dependências do projeto
-3. rodar o ambiente de desenvolvimento
-4. rodar a build de deploy da aplicação.
-
-•	Ainda na documentação, explicar a sua motivação de escolha das libs e frameworks (ou o motivo de ter feito na mão). Uma explicação sobre a estrutura do projeto também será bem vinda.
-
-•	Pode utilizar tanto o Axios quanto ou Fetch para requisições.
-
-•	Deve ser seguido o layout disponibilizado. Caso queira, pode utilizar uma lib de ícones com ícones semelhantes e relevantes pro contexto da aplicação.
-
-•	É imprescindível que o teste desenvolvido funcione corretamente na minha máquina (em qualquer máquina, na real). Inclusive, recomendo que comece codando pela regra de negócio e, depois de finalizado a regra, trabalhe corretamente os components, qualidade de código e layout.
+> •	O botão de voltar levar de volta para a home page, para que outro usuário do GitHub seja pesquisado.  
 
 
-## Observações importantes
-A ideia deste desafio é entender como você domina os conceitos básicos de React, com um desafio no mundo real, da forma mais “sincera” possível. E, a partir dele, entender como você traz este conhecimento pra debate com outros profissionais e como você o apresenta como solução técnica que traz valor para um cliente/usuário final num ambiente de trabalho. 
+## APIs utilizadas no projeto
 
-Não é pra ser um teste exaustivo - este não é esse o objetivo. Tanto que no teste eu não peço soluções de formulário com CRUD completo e gerenciamento de estados complexos. A regra principal *- e o que mais importa -* é que o teste que você desenvolveu e apresentou, funcione e atenda ao que foi solicitado na história acima. 
+> •	API de busca de usuários do GitHub: https://api.github.com/users/username
 
-Além do que foi pedido nos requisitos técnicos acima, não existe “certo e errado”, da mesma forma que não vou levar tudo ao pé da letra nos mínimos detalhes.
+> •	API de busca de repositórios do usuário pesquisado: https://api.github.com/users/username/repos
 
-**Além disso, um outro ponto importante deste teste é o de entender como que estão seus conhecimentos e, a partir daí, poder te auxiliar da melhor forma possível com dicas e experiências que possam ser relevantes pra alavancar a sua carreira como desenvolvedor front-end.**
+## Design do projeto
 
-*Autor: Diogo Fonseca, aka “Mozão”  
-Público: iniciantes, aprendizes e juniores em front-end com ReactJS  
-Criado em: Janeiro/2021  
-Última revisão: Abril/2021* 
+> •	Design de tela - página Home: https://marvelapp.com/prototype/9b662g7/screen/76185933/handoff
+
+> •	Design de tela - página Perfil: https://marvelapp.com/prototype/9b662g7/screen/76186368/handoff
+
+
+## O projeto
+
+> •	Foi utilizado a library de ReactJS com function components
+
+> •	Foi utilizado o vite para criar o projeto ReactJS
+
+> •	Foi uloizado o CSS clássico 
+
+> •	Para rotas foi utilizado a library react-router-dom, e foi usado a funcionalidade  navigate do react-router-dom 
+
+> •	O projeto contem duas rotas: a rota “home” da página de busca, e a rota “perfil” que exibe o perfil do usuário pesquisado
+
+> • Foi utilizado a library axios para fazer as requisições na API 
+
+> • Foi utlizado a library momentJs para fazer a manipulação de datas e horas
+
+> •	O responsivo – foi levado em 3 considerações: Notebook/Desktop (como um só, resoluções maiores que 1300px width), tablet iPad e celular iPhone 5 (o Chrome Dev Tools possui referência para todos estes dispositivos por padrão)
+
+
+## Inicialização do projeto
+> 1. npm install - instala as dependências
+> 2. npm run dev - roda o projeto no ambiente de desenvolvimento
+> 3. npm run build - cria versão otimizada do aplicativo
+
+
+## Objetivos do projeto
+
+A ideia deste projeto é entender os conceitos básicos de React, com um desafio no mundo real, da forma mais “sincera” possível. E, a partir dele, entender como trazer este conhecimento pra debate com outros profissionais e como apresentar uma solução técnica que traz valor para um cliente/usuário final num ambiente de trabalho. 
+
+## Deploy do projeto 
+> - Link: https://superlative-crostata-e5b6d9.netlify.app/
