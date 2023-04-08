@@ -21,7 +21,7 @@ function Profile(){
 
      async function getUserRepositories(){
           try {
-               const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=100&page=${page}`);
+               const response = await axios.get(`https://api.github.com/users/${user.login}/repos?per_page=200&page=${page}`);
                let totalStars = 0;
                response.data.sort((a, b)=> b.stargazers_count - a.stargazers_count);
                response.data.forEach(repository=>{
