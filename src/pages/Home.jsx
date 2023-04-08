@@ -20,8 +20,9 @@ function Home(){
                const response = await axios.get(`https://api.github.com/users/${userName}`);
                console.log(response.data);
                const user = response.data;
+               localStorage.setItem("user", JSON.stringify(user));
 
-               navigate("/perfil", {state: {user}});
+               navigate("/perfil");
           } catch (error) {
                setError(error.message);
                console.log(error.message);

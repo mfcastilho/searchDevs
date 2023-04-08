@@ -7,7 +7,7 @@ import moment from "moment/moment";
 function Profile(){
 
      const location = useLocation();
-     const user = location.state.user;
+     const user = JSON.parse(localStorage.getItem("user"));
      
      const [totalProfileStars, setTotalProfileStars] = useState(0);
      const [organizations, setOrganizations] = useState([]);
