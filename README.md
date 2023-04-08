@@ -34,7 +34,7 @@ Aplicação web em ReactJS que busca o perfil de desenvolvedores na API pública
 
 > •	Foi utilizado o vite para criar o projeto ReactJS
 
-> •	Foi uloizado o CSS clássico 
+> •	Foi utilizado o CSS clássico 
 
 > •	Para rotas foi utilizado a library react-router-dom, e foi usado a funcionalidade  navigate do react-router-dom 
 
